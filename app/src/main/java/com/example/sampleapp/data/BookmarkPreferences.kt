@@ -13,12 +13,12 @@ object SettingsKeys {
     val IS_BOOKMARKED = booleanPreferencesKey("is_bookmarked")
 }
 
-class BookmarkPreferences(private val context: Context) {
+class BookmarkPreferences(private val context: Context): BookmarkPreferencesInterface {
 
-    val isBookmarked: Flow<Boolean> = context.dataStore.data
+    override val isBookmarked: Flow<Boolean> = context.dataStore.data
         .map { prefs -> prefs[SettingsKeys.IS_BOOKMARKED] ?: false }
 
-    suspend fun setBookmarked(value: Boolean) {
+    override suspend fun setBookmarked(value: Boolean) {
         context.dataStore.edit { prefs ->
             prefs[SettingsKeys.IS_BOOKMARKED] = value
         }
