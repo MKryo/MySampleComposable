@@ -1,7 +1,7 @@
 package com.example.sampleapp.data
 
 class BookmarkRepository(
-    private val preferences: BookmarkPreferences
+    private val preferences: BookmarkPreferencesInterface
 ) {
     fun getBookmarkState() = preferences.isBookmarked
 
